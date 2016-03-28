@@ -6,10 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Proveedor extends GenericEntity {
@@ -19,8 +16,6 @@ public class Proveedor extends GenericEntity {
 	@OneToOne(mappedBy="proveedor")
 	private Direccion direccion;
 
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-	@JsonIdentityReference(alwaysAsId=true)
 	@OneToMany(mappedBy="proveedor")
 	private Set<Producto> productos;
 }
