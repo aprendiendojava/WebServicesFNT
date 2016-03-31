@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Proveedor extends GenericEntity {
+public class Proveedor extends GenericEntity<Proveedor> {
 	private String nombre;
 
 	@JsonIgnoreProperties({"proveedor" })

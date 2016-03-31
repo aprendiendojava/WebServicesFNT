@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Pedido extends GenericEntity {
+public class Pedido extends GenericEntity<Pedido> {
 	private Date fecha;
 
 	@ManyToOne

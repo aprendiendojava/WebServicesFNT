@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cliente extends GenericEntity {
+public class Cliente extends GenericEntity<Cliente> {
 	private String nombre;
 	private String apellidos;
 

@@ -5,7 +5,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Direccion extends GenericEntity {
+public class Direccion extends GenericEntity<Direccion> {
 	private String direccion;
 	private String ciudad;
 	private String pais;

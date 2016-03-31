@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 
 @MappedSuperclass
 @JsonFilter("CustomFilter")
-public class GenericEntity {
+public class GenericEntity<T> {
 	@Id
 	@GeneratedValue
 	private Long id;

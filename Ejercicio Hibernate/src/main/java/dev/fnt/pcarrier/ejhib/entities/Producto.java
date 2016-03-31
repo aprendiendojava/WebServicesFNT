@@ -9,7 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Producto extends GenericEntity {
+public class Producto extends GenericEntity<Producto> {
 	private String nombre;
 	private Float precio;
 	private String moneda;
