@@ -51,7 +51,9 @@ public abstract class GenericRest<T extends GenericEntity> {
 	public Response update(@PathParam("id") Long id, T entity) {
 		if( entity.getId() != id || !getRepo().exists(id))
 			return Response.notModified().build();
-		else return Response.accepted(getRepo().save(entity)).build();
+		else{
+			return Response.accepted(getRepo().save(entity)).build();
+		}
 	}
 
 	@DELETE

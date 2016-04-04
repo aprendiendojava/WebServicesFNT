@@ -6,13 +6,19 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.deser.SettableBeanProperty;
 
+@Component
 public class CustomDeserializerModifier extends BeanDeserializerModifier {
+	@Autowired
+	private RelationDeserializer<?> relDeserializer;
 
 	@Override
 	public BeanDeserializerBuilder updateBuilder(DeserializationConfig config, BeanDescription beanDesc,
@@ -27,10 +33,11 @@ public class CustomDeserializerModifier extends BeanDeserializerModifier {
 				|| property.getAnnotation(OneToMany.class) != null
 				|| property.getAnnotation(ManyToOne.class) != null )
 			{
-				System.out.println("DELEGATEE");
 				properties.remove();
-				builder.addProperty(property.withValueDeserializer(new CustomDeserializer<>()));
-				System.out.println("DELEGATEE2");
+				property.getType().getContentType();
+				System.out.println(property.getType().getContentType().getRawClass());
+				relDeserializer.setType(property.getType().getContentType());
+				builder.addProperty(property.withValueDeserializer(relDeserializer));
 			}
 		}
 	return super.updateBuilder(config, beanDesc, builder);
